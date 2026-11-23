@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel Sensor ESP32</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>📡 Panel del sensor ESP32</h1>
+  <div class="conn">
+    <span id="dot" class="dot off"></span>
+    <span id="statusText">Desconectado</span>
+    <input id="ipInput" type="text" placeholder="IP del ESP32 (ej: 192.168.1.50)" autocomplete="off">
+    <button id="btnConnect">Conectar</button>
+    <button id="btnDemo" class="alt">Modo demo</button>
+    <button id="btnSound" class="alt">🔇 Sonido</button>
+  </div>
+</header>
+
+<main>
+  <section id="stateCard" class="card state free">
+    <div class="stateLabel">Estado del sensor</div>
+    <div id="stateText" class="stateText">LIBRE</div>
+    <div class="stateBin">Bit del sensor: <code id="stateBit">0</code></div>
+  </section>
+
+  <section class="card">
+    <h2>🕐 Hora</h2>
+    <div class="row"><span class="lab">Horas (24 h)</span><span id="hDec" class="dec">--</span><code id="hBin" class="bin">-</code></div>
+    <div class="row"><span class="lab">Minutos</span><span id="mDec" class="dec">--</span><code id="mBin" class="bin">-</code></div>
+    <div class="row"><span class="lab">Segundos</span><span id="sDec" class="dec">--</span><code id="sBin" class="bin">-</code></div>
+  </section>
+
+  <section class="card">
+    <h2>📅 Fecha</h2>
+    <div class="row"><span class="lab">Día</span><span id="dDec" class="dec">--</span><code id="dBin" class="bin">-</code></div>
+    <div class="row"><span class="lab">Mes</span><span id="moDec" class="dec">--</span><code id="moBin" class="bin">-</code></div>
+    <div class="row"><span class="lab">Año</span><span id="yDec" class="dec">--</span><code id="yBin" class="bin">-</code></div>
+    <div class="row"><span class="lab">Día semana</span><span id="wDec" class="dec">--</span><code id="wBin" class="bin">-</code></div>
+  </section>
+
+  <section class="card">
+    <h2>🔢 Datos del sistema</h2>
+    <div class="row"><span class="lab">Alertas</span><span id="cDec" class="dec">--</span><code id="cBin" class="bin">-</code></div>
+    <div class="row"><span class="lab">Señal WiFi</span><span id="rDec" class="dec">--</span><code id="rBin" class="bin">-</code></div>
+    <div class="row"><span class="lab">Encendido (s)</span><span id="uDec" class="dec">--</span><code id="uBin" class="bin">-</code></div>
+    <div class="row"><span class="lab">Hora Unix</span><span id="eDec" class="dec">--</span><code id="eBin" class="bin">-</code></div>
+    <div class="row"><span class="lab">Red</span><span id="net" class="dec wide">--</span></div>
+    <div class="row"><span class="lab">IP</span><span id="ipShow" class="dec wide">--</span></div>
+  </section>
+
+  <section class="card wideCard">
+    <h2>💬 Mensaje en binario (ASCII)</h2>
+    <div class="row"><span class="lab">Texto</span><span class="dec wide">MOVIMIENTO</span></div>
+    <code id="asciiBin" class="bin block"></code>
+  </section>
+
+  <section class="card wideCard">
+    <h2>📋 Últimas detecciones</h2>
+    <div class="tableWrap">
+      <table>
+        <thead><tr><th>#</th><th>Hora</th><th>Fecha</th><th>Hora en binario (H : M : S)</th></tr></thead>
+        <tbody id="events"><tr><td colspan="4" class="empty">Sin detecciones todavía</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
